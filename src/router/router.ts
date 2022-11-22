@@ -8,7 +8,8 @@ const router = createRouter(
         history: createWebHistory(),
         routes: [
             {path: "/", component: RecipesListPageVue},
-            {path: "/create", component: CreateRecipePageVue}
+            {path: "/create", component: CreateRecipePageVue},
+            {path: "/:pathMatch(.*)*", component: RecipesListPageVue}, //page not found
         ]
     }
 )
