@@ -1,43 +1,52 @@
+<script lang="ts">
+import { dataService } from '../service/dataService';
+
+export default {
+    data() {
+        return {
+            newRecipe: {
+                img: "https://media.moddb.com/images/members/5/4550/4549205/duck.jpg",
+                description: "",
+                title: "",
+            }            
+        }
+    },
+    methods: {
+        handleChange(e : any) {
+            console.log(e.target.value);
+            this.newRecipe.img = e.target.value;
+        },
+
+        handleSubmit() {
+            dataService.addData(this.newRecipe);
+            this.$router.push('/');
+        }
+    }
+}
+</script>
+
 <template lang="">
     <div class="create-recipe">
         <h1>Création de recette</h1>
         <div class="upper-form">
             <div>
                 <figure>
-                    <img :src="image" alt="ah">
+                    <img :src="newRecipe.img" alt="ah">
                 </figure>
                 <input class="img-input" placeholder="Enter an image url" type="url" accept="image/png, image/jpeg, image/jpg" @change="handleChange">
             </div>
             <div>
                 <div class="input-title">
                     <h2>RECIPE TITLE: </h2>
-                    <input type="text" name="" id="">
+                    <input type="text" name="title" id="title" v-model="newRecipe.title" >
                 </div>
-                <textarea rows="15" cols="70" placeholder="Write a description"></textarea>
+                <textarea rows="15" cols="70" placeholder="Write a description" v-model="newRecipe.description" ></textarea>
             </div>
         </div>
-        <h2>INGREDIENTS</h2>
-        <div class="add-ingredients">
-            <input class="add-ingredients-input" type="text">
-            <button>Add</button>
-        </div>
+        <button @click="handleSubmit">ADD</button>
     </div>
 </template>
-<script lang="ts">
-export default {
-    data() {
-        return {
-            image: "https://media.moddb.com/images/members/5/4550/4549205/duck.jpg",
-        }
-    },
-    methods: {
-        handleChange(e : any) {
-            console.log(e.target.value);
-            this.image = e.target.value;
-        }
-    }
-}
-</script>
+
 <style>
     .create-recipe {
         width: 1280px;

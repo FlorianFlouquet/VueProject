@@ -1,11 +1,17 @@
+<script lang="ts">
+export default {
+    props: ['data'],    
+}
+</script>
+
 <template>
     <div class="card">
         <figure>
-            <img src="https://media.moddb.com/images/members/5/4550/4549205/duck.jpg" alt="canard">
+            <img :src="data.img" alt="canard">
         </figure>
         <div>
-            <h2>Nom de la recette</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <h2>{{data.title}}</h2>
+            <p>{{data.description}}</p>
         </div>
     </div>
 </template>
@@ -33,9 +39,3 @@
         flex: 1;
     }
 </style>
-
-<script lang="ts">
-    export default {
-        
-    }
-</script>
